@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Проект "Комменты"</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="styles.css" />
+    <!-- <script src="./render.js" type="module"></script>
+    <script src="./render.js" type="module"></script> -->
+  </head>
+  <body>
+    <div class="container">
+  <span class="preload">Загрузка страницы комментариев</span>
+  <ul id="list" class="comments">
+  <!--список рендерится из js-->
+  </ul>
+  <form id="myForm">
+  <div class="add-form">
+    <input
+      type="text" id="addName" value=""
+      class="add-form-name"
+      placeholder="Введите ваше имя"
+    />
+    <textarea
+      type="textarea" id="addText"
+      class="add-form-text"
+      placeholder="Введите ваш коментарий"
+      rows="4"
+    ></textarea>
+    <div class="add-form-row">
+      <button id="addComment" value="" class="add-form-button" type="button">Написать</button>
+    </div>
+  </div>
+  </form>
+  </div>
+  </body>
+  <style>
+    .error {
+      background-color: red;
+    }
+  </style>
+
+
+<script type="module" src="./main.js"></script> 
+
+
+</html>
