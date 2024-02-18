@@ -1,10 +1,11 @@
-import { renderComments } from "./render.js";
-import { preloader, setComments, addNameElement, addTextElement, buttonElement} from "./main.js"
+import { renderComments, preloader, addNameElement, addTextElement, buttonElement } from "./render.js";
+import { setComments } from "./main.js";
 
 const host = "https://wedev-api.sky.pro/api/v2/atolykova-lily/comments";
 
 // let password = prompt('Введите пароль');
 let token = "Bearer asb4c4boc86gasb4c4boc86g37w3cc3bo3b83k4g37k3bk3cg3c03ck4k";
+
 
 export function fetchAndRender() {
 const fetchPromise = fetch(host, {
@@ -24,7 +25,6 @@ fetchPromise
     fetchAndRender();
     throw new Error("Нет авторизации");
   }
-
   return response.json();
 })
 .then((responseData) => {
@@ -47,9 +47,7 @@ fetchPromise
       isLike: false, 
     }; 
   });
-
   setComments(comments); // вызвали функцию
-
 }) 
 .then(() => { 
   renderComments(); // render обернули в then
@@ -63,15 +61,16 @@ fetchPromise
 });
 }
 
-export function postComment() {
-const nameValue = addNameElement.value;
-const textValue = addTextElement.value;
+
+export function postComment({nameValue, textValue}) {
+const buttonElement = document.getElementById("addComment");
+// const nameValue = addNameElement.value;
+// const textValue = addTextElement.value;
 
 // загрузка. textContent = innerHTML (аналог)
 // отключаем кнопку
 buttonElement.disabled = true;
 buttonElement.textContent = 'Комментарий добавляется...';
-
 
   fetch(host, {
       method: "POST",
