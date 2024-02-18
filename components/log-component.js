@@ -1,8 +1,4 @@
-
-import { token } from "./render.js";
-import { fetchAndRender } from "./api.js";
-
-export function renderLogComponent ({ appEl }) {
+export function renderLogComponent ({ appEl, setToken, fetchAndRender }) {
     const appHtml = `
     <div class="container">
     <form id="myForm">
@@ -30,8 +26,8 @@ export function renderLogComponent ({ appEl }) {
     appEl.innerHTML = appHtml;
 
     document.getElementById('addLog').addEventListener('click', () => {
-    token = "Bearer asb4c4boc86gasb4c4boc86g37w3cc3bo3b83k4g37k3bk3cg3c03ck4k";
-    
+    setToken("Bearer asb4c4boc86gasb4c4boc86g37w3cc3bo3b83k4g37k3bk3cg3c03ck4k");
+
     fetchAndRender();
     })
 }
