@@ -7,50 +7,14 @@ const likesButtonElement = document.querySelectorAll('.like-button');
 
 export let comments = [];
 
-// token = null;
-
 export const setComments = (value) => { // заполнили массив
   comments = value;
 }
 
-fetchAndRender();
+// что правильнне render или fetch ????
+// fetchAndRender(); //сменили на рендер
+renderComments();
 
-// first----------------------------------------
-// buttonElement.addEventListener("click", () => {
-// addNameElement.classList.remove("error");
-// addTextElement.classList.remove("error");
-// if (addNameElement.value.trim() === "") {
-// addNameElement.classList.add("error");
-// return;
-// }
-// if (addTextElement.value.trim() === "") {
-// addTextElement.classList.add("error");
-// return;
-// }
-// postComment(); // добавили
-// });
-
-// second(double)---------------------------------
-// if (buttonElement) {
-//   buttonElement.addEventListener('click', () => {
-//     //addNameElement.style.backgroundColor = ""; альтернатива инлайн - не рек
-//     addNameElement.classList.remove("error");
-//     addTextElement.classList.remove("error");
-//     if (addNameElement.value.trim() === "") {
-//       //addNameElement.style.backgroundColor = "red"; альтернатива инлайн - не рек
-//       addNameElement.classList.add("error");
-//       return;
-//     } 
-//     if (addTextElement.value.trim() === "") {
-//       addTextElement.classList.add("error");
-//       return;
-//     };
-//     renderComments();
-//     postComment(); // добавили
-//     addNameElement.value = '';
-//     addTextElement.value = '';
-//   });
-//   }
 
 export function addComListener() {
   const addNameElement = document.getElementById("addName");
@@ -122,6 +86,48 @@ commentText.addEventListener('click', (event) => {
 });
 }
 
+console.log("It works!");
+
+
+
+// first----------------------------------------
+// buttonElement.addEventListener("click", () => {
+// addNameElement.classList.remove("error");
+// addTextElement.classList.remove("error");
+// if (addNameElement.value.trim() === "") {
+// addNameElement.classList.add("error");
+// return;
+// }
+// if (addTextElement.value.trim() === "") {
+// addTextElement.classList.add("error");
+// return;
+// }
+// postComment(); // добавили
+// });
+
+// second(double)---------------------------------
+// if (buttonElement) {
+//   buttonElement.addEventListener('click', () => {
+//     //addNameElement.style.backgroundColor = ""; альтернатива инлайн - не рек
+//     addNameElement.classList.remove("error");
+//     addTextElement.classList.remove("error");
+//     if (addNameElement.value.trim() === "") {
+//       //addNameElement.style.backgroundColor = "red"; альтернатива инлайн - не рек
+//       addNameElement.classList.add("error");
+//       return;
+//     } 
+//     if (addTextElement.value.trim() === "") {
+//       addTextElement.classList.add("error");
+//       return;
+//     };
+//     renderComments();
+//     postComment(); // добавили
+//     addNameElement.value = '';
+//     addTextElement.value = '';
+//   });
+//   }
+
+
 // second----------------------------------------------
 // if (buttonElement) {
 // buttonElement.addEventListener('click', () => {
@@ -143,7 +149,3 @@ commentText.addEventListener('click', (event) => {
 //   addTextElement.value = '';
 // });
 // }
-
-console.log("It works!");
-
-

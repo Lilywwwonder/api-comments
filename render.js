@@ -1,14 +1,52 @@
+import { fetchAndRender } from "./api.js";
 import { commentsElementListeners, likesButtonListeners, comments, addSubmitListener, addComListener} from "./main.js"
+import { renderLogComponent} from "./components/log-component.js";
 
 export const preloader = document.querySelector('.preload'); // перенесли в api
 export const addNameElement = document.getElementById("addName");
 export const addTextElement = document.getElementById("addText");
 export const buttonElement = document.getElementById("addComment");
 const listElement = document.getElementById("list");
+export let token = "Bearer asb4c4boc86gasb4c4boc86g37w3cc3bo3b83k4g37k3bk3cg3c03ck4k";
+token = null;
 
 
+// export const renderApp = () => { урок 16.6 - надо ли корректировать под App? примерно 08.00
 export const renderComments = () => {
-const appEl = document.getElementById("app");
+  const appEl = document.getElementById("app");
+if(!token) {
+//   const appHtml = `
+//   <div class="container">
+//   <form id="myForm">
+// <div class="add-form">
+//   <span class="loginForm"><b>Форма входа</b></span>
+//   <input
+//     type="text" id="addLogin" value=""
+//     class="add-form-login"
+//     placeholder="Введите логин"
+//   />
+//   <input
+//     type="text" id="addPassword"
+//     class="add-form-password"
+//     placeholder="Введите пароль"
+//   />
+//   <div class="add-form-longRow">
+//     <button id="addLog" value="" class="add-log-button" type="button">Войти</button>
+//   </div>
+//   <span class="register"><b>Зарегистироваться</b></span>
+// </div>
+// </form>
+// </div>
+// `;
+// appEl.innerHTML = appHtml;
+// document.getElementById('addLog').addEventListener('click', () => {
+//   token = "Bearer asb4c4boc86gasb4c4boc86g37w3cc3bo3b83k4g37k3bk3cg3c03ck4k";
+// fetchAndRender();
+// });
+renderLogComponent({ appEl });
+return;
+}
+
 const commentsHtml = comments.map((comment, index) => {
   const likeClass = comment.isLike ? '-active-like' : '';
   return `<li class="comment">
@@ -45,6 +83,8 @@ const appHtml = `
 </ul>
 <!-- добавили строку для авторизации!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
 <p>Чтобы добавить комментарий, <span class="autho">авторизуйтесь</span></p>
+
+
 <form id="myForm">
 <div class="add-form">
   <input
@@ -63,26 +103,7 @@ const appHtml = `
   </div>
 </div>
 </form>
-<!-- создаем форму входа!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
-<form id="myForm">
-<div class="add-form">
-  <span class="loginForm"><b>Форма входа</b></span>
-  <input
-    type="text" id="addLogin" value=""
-    class="add-form-login"
-    placeholder="Введите логин"
-  />
-  <input
-    type="text" id="addPassword"
-    class="add-form-password"
-    placeholder="Введите пароль"
-  />
-  <div class="add-form-longRow">
-    <button id="addLog" value="" class="add-log-button" type="button">Войти</button>
-  </div>
-  <span class="register"><b>Зарегистироваться</b></span>
-</div>
-</form>
+
 
 
 <!-- создаем форму регистрации!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!--> 
