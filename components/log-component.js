@@ -1,4 +1,4 @@
-import { loginUser } from "../api.js";
+import { loginUser, registerUser } from "../api.js";
 
 export function renderLogComponent ({ appEl, setToken, fetchAndRender }) {
     let isLoginMode = false;
@@ -11,7 +11,7 @@ export function renderLogComponent ({ appEl, setToken, fetchAndRender }) {
       <span class="loginForm"><b>Форма ${isLoginMode ? 'входа' : 'регистрации'}</b></span>
   
       ${isLoginMode ? '' : `<input
-      type="text" id="addName" value=""
+      type="text" id="addRegName" value=""
       class="add-form-nameRegister"
       placeholder="Введите имя"
       />`}
@@ -39,9 +39,42 @@ export function renderLogComponent ({ appEl, setToken, fetchAndRender }) {
   
       document.getElementById("addLog").addEventListener('click', () => {
         // setToken("Bearer asb4c4boc86gasb4c4boc86g37w3cc3bo3b83k4g37k3bk3cg3c03ck4k");
-      const login = document.getElementById("addLogin").value;
-      const password = document.getElementById("addPassword").value;
+      if(!isLoginMode) {
+        const name = document.getElementById("addRegName").value;
+        const login = document.getElementById("addLogin").value;
+        const password = document.getElementById("addPassword").value;
+        
+        if(!name) {
+          alert('Введите имя')
+          return;
+        }
+
+        if(!login) {
+          alert('Введите логин')
+          return;
+        }
   
+        if(!password) {
+          alert('Введите пароль')
+          return;
+        }
+  
+      registerUser({
+        name: name,
+        login: login,
+        password: password,
+      }).then((user) => {
+        // console.log(user) //после проверки удалить
+        // setToken(`Bearer ${ user.user.token }`); //не работает ошибка user.user is undefined. прописала полностью token
+        setToken(`Bearer asb4c4boc86gasb4c4boc86g37w3cc3bo3b83k4g37k3bk3cg3c03ck4k`);
+        fetchAndRender();
+      }).catch((error) => {
+        alert(error.message);
+      });
+      } else {
+        const login = document.getElementById("addLogin").value;
+        const password = document.getElementById("addPassword").value;
+        
         if(!login) {
           alert('Введите логин')
           return;
@@ -63,6 +96,7 @@ export function renderLogComponent ({ appEl, setToken, fetchAndRender }) {
       }).catch((error) => {
         alert(error.message);
       });
+      }
     });
   
     document.getElementById("toggle-button").addEventListener('click', () => {

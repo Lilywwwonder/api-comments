@@ -171,3 +171,21 @@ export function loginUser({ login, password }) {
     //   buttonElement.textContent = 'Войти';
     // });
   }
+
+  // для регистрации
+export function registerUser({ name, login, password }) {
+  return fetch("https://wedev-api.sky.pro/api/v2/atolykova-lily/comments", {
+        method: "POST",
+        body: JSON.stringify({
+          name,
+          login,
+          password,
+        }),
+      })
+      .then((response) => {
+        if (response.status === 400) {
+          throw new Error("Пользователь с таким именем уже существует");
+        } 
+        return response.json();
+    });
+  }
