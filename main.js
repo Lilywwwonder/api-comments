@@ -1,5 +1,5 @@
 import { fetchAndRender, postComment } from "./api.js";
-import { renderComments } from "./render.js";
+import { renderComments } from "./render.js"; 
 
 "use strict";
 const addTimeElement = document.getElementById("addTime");
@@ -14,7 +14,6 @@ export const setComments = (value) => { // заполнили массив
 // что правильнне render или fetch ????
 // fetchAndRender(); //сменили на рендер
 renderComments();
-
 
 export function addComListener() {
   const addNameElement = document.getElementById("addName");

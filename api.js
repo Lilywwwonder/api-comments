@@ -141,3 +141,33 @@ buttonElement.textContent = 'Комментарий добавляется...';
   });
 }
     
+
+// для логина
+export function loginUser({ login, password }) {
+  // const buttonElement = document.getElementById('addLog');
+  // buttonElement.disabled = true;
+  return fetch("https://wedev-api.sky.pro/api/v2/atolykova-lily/comments", {
+        method: "POST",
+        body: JSON.stringify({
+          login,
+          password,
+        }),
+      })
+      .then((response) => {
+        if (response.status === 400) {
+          throw new Error("Неверный логин или пароль");
+        } 
+        return response.json();
+    });
+    // .then(() => {
+    //   fetchAndRender();
+    // })
+    // .then(() => {
+    //   buttonElement.disabled = false;
+    //   buttonElement.textContent = 'Войти';
+    // })
+    // .finally(() => {
+    //   buttonElement.disabled = false;
+    //   buttonElement.textContent = 'Войти';
+    // });
+  }
