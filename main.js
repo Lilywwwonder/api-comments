@@ -59,7 +59,7 @@ for (const likeButton of likesButtonElement) {
 }
 
 
-// дз 2.11
+
 export const commentsElementListeners = () => {
 const commentsElement = document.querySelectorAll('.comment-text');
 
@@ -83,6 +83,7 @@ commentText.addEventListener('click', (event) => {
   e.target.reset();
   renderComments();
 });
+
 }
 
 console.log("It works!");

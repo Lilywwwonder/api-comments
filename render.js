@@ -1,8 +1,8 @@
-import { fetchAndRender } from "./api.js";
+import { fetchAndRender, registerUser } from "./api.js";
 import { commentsElementListeners, likesButtonListeners, comments, addSubmitListener, addComListener} from "./main.js"
-import { renderLogComponent} from "./components/log-component.js";
+import { renderLogComponent } from "./components/log-component.js";
 
-export const preloader = document.querySelector('.preload'); // перенесли в api
+export const preloader = document.querySelector('.preload'); 
 export const addNameElement = document.getElementById("addName");
 export const addTextElement = document.getElementById("addText");
 export const buttonElement = document.getElementById("addComment");
@@ -11,11 +11,9 @@ export let token = "Bearer asb4c4boc86gasb4c4boc86g37w3cc3bo3b83k4g37k3bk3cg3c03
 token = null;
 
 
-// export const renderApp = () => { урок 16.6 - надо ли корректировать под App? примерно 08.00
 export const renderComments = () => {
   const appEl = document.getElementById("app");
 if(!token) {
-  // код входа перенесли в log-component
 renderLogComponent({ appEl, setToken: (newToken) => {
   token = newToken;
 }, 
@@ -49,8 +47,8 @@ const commentsHtml = comments.map((comment, index) => {
       </div>
     </li>`
 }).join('');
-// перенесли все формы из index.html
 // const appEl = document.getElementById("app");
+
 
 const appHtml = `
 <div class="container">
@@ -58,10 +56,6 @@ const appHtml = `
    <!--список рендерится из js-->
    ${commentsHtml}
 </ul>
-<!-- добавили строку для авторизации!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
-<p>Чтобы добавить комментарий, <span class="autho">авторизуйтесь</span></p>
-
-
 <form id="myForm">
 <div class="add-form">
   <input
@@ -80,11 +74,6 @@ const appHtml = `
   </div>
 </div>
 </form>
-
-
-
-<!-- создаем форму регистрации!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!--> 
-
 </div>
 `;
 
@@ -94,4 +83,47 @@ commentsElementListeners();
 addSubmitListener();
 addComListener();
 };
+
+
+
+
+// <div class="container">
+//   <ul id="list" class="comments">
+//     ${commentsHtml}
+//   </ul>
+//   <p>Чтобы добавить комментарий, <span class="add-autho" id="toggle-button2">авторизуйтесь</span></p>
+// </div>
+// --------------------------------------------------------
+// const formHtml = `
+// <div class="container">
+//   <ul id="list" class="comments">
+//     ${commentsHtml}
+//   </ul>
+//   <p>Чтобы добавить комментарий, <span class="add-autho" id="toggle-button2">авторизуйтесь</span></p>
+// </div>
+// `;
+
+// appEl.innerHTML = formHtml;
+// likesButtonListeners();
+// commentsElementListeners();
+// addSubmitListener();
+// addComListener();
+// ----------------------------------------------------------
+// function renderCommentsForm(commentsHtml) {
+//   const appEl = document.getElementById("app");
+//   const appHtml = `
+//     <div class="container">
+//       <ul id="list" class="comments">
+//         ${commentsHtml}
+//       </ul>
+//       <p>Чтобы добавить комментарий, <span class="add-autho" id="toggle-button2">авторизуйтесь</span></p>
+//     </div>
+//   `;
+//   appEl.innerHTML = appHtml;
+// }
+
+
+
+
+
 

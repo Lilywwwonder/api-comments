@@ -30,14 +30,14 @@ fetchPromise
 .then((responseData) => {
   const comments = responseData.comments.map((comment) => {
     return { 
-      name: comment.author.name //возвращаем спецсимволы обратно
+      name: comment.author.name 
       .replace(/&lt;/g, "<")
       .replace(/&gt;/g, ">")
       .replace(/&amp;/g, "&")
       .replace(/&quot;/g, '"')
       .replace(/&nbsp;/g, " "),
       time: new Date(comment.date).toLocaleTimeString('sm', {day: '2-digit', month: '2-digit', year: '2-digit', hour: '2-digit', minute: '2-digit'}), 
-      comment: comment.text //возвращаем спецсимволы обратно
+      comment: comment.text 
       .replace(/&lt;/g, "<")
       .replace(/&gt;/g, ">")
       .replace(/&amp;/g, "&")
@@ -142,7 +142,7 @@ buttonElement.textContent = 'Комментарий добавляется...';
 }
     
 
-// для логина
+// для входа (логина)
 export function loginUser({ login, password }) {
   // const buttonElement = document.getElementById('addLog');
   // buttonElement.disabled = true;
@@ -189,3 +189,6 @@ export function registerUser({ name, login, password }) {
         return response.json();
     });
   }
+
+
+

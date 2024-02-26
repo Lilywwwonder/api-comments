@@ -1,7 +1,8 @@
 import { loginUser, registerUser } from "../api.js";
 
+
 export function renderLogComponent ({ appEl, setToken, fetchAndRender }) {
-    let isLoginMode = false;
+  let isLoginMode = true;
 
     const renderForm = () => {
       const appHtml = `
@@ -107,4 +108,37 @@ export function renderLogComponent ({ appEl, setToken, fetchAndRender }) {
     renderForm();
   }
 
-// проработать вход с неправильным паролем и кодом
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // import { renderCommentsList } from "../render.js";
+// export function renderRegComponent () {
+// const renderReg = () => {
+//   const appHtml = `
+//   <div class="container">
+//   <ul id="list" class="comments">
+//   ${commentsHtml}
+//   </ul>
+//   <p>Чтобы добавить комментарий, <span class="add-autho" id="toggle-button2">авторизуйтесь</span></p>
+// </div>
+// `;  
+// appEl.innerHTML = appHtml;
+// }
+// renderReg();
+// };
+

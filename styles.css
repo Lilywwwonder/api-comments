@@ -189,7 +189,7 @@ body {
   flex-direction: column;
 }
 
-.autho,
+.add-autho,
 .register {
   cursor: pointer;
   text-decoration: underline;
