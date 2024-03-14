@@ -1,4 +1,4 @@
-import { fetchAndRender, postComment } from "./api.js";
+import { fetchAndRender, loginUser, postComment } from "./api.js";
 import { renderComments } from "./render.js"; 
 
 "use strict";
@@ -11,9 +11,10 @@ export const setComments = (value) => { // заполнили массив
   comments = value;
 }
 
-// что правильнне render или fetch ????
-// fetchAndRender(); //сменили на рендер
-renderComments();
+
+fetchAndRender(); //сменили на рендер
+// renderComments(); 
+// renderReg(); 
 
 export function addComListener() {
   const addNameElement = document.getElementById("addName");
@@ -58,8 +59,6 @@ for (const likeButton of likesButtonElement) {
 }
 }
 
-
-
 export const commentsElementListeners = () => {
 const commentsElement = document.querySelectorAll('.comment-text');
 
@@ -83,10 +82,29 @@ commentText.addEventListener('click', (event) => {
   e.target.reset();
   renderComments();
 });
-
 }
-
 console.log("It works!");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -126,7 +144,6 @@ console.log("It works!");
 //     addTextElement.value = '';
 //   });
 //   }
-
 
 // second----------------------------------------------
 // if (buttonElement) {

@@ -1,6 +1,5 @@
-import { renderComments, preloader, addNameElement, addTextElement, buttonElement, token } from "./render.js";
+import { renderComments, renderReg, preloader, addNameElement, addTextElement, buttonElement, token } from "./render.js";
 import { setComments } from "./main.js";
-
 const host = "https://wedev-api.sky.pro/api/v2/atolykova-lily/comments";
 
 // let password = prompt('Введите пароль');
@@ -49,6 +48,10 @@ fetchPromise
   });
   setComments(comments); // вызвали функцию
 }) 
+.then(() => { 
+  renderReg(); // render обернули в then
+  preloader.classList.add('hide'); 
+})
 .then(() => { 
   renderComments(); // render обернули в then
   preloader.classList.add('hide'); 
@@ -146,7 +149,7 @@ buttonElement.textContent = 'Комментарий добавляется...';
 export function loginUser({ login, password }) {
   // const buttonElement = document.getElementById('addLog');
   // buttonElement.disabled = true;
-  return fetch("https://wedev-api.sky.pro/api/v2/atolykova-lily/comments", {
+  return fetch("https://wedev-api.sky.pro/api/user/login", {
         method: "POST",
         body: JSON.stringify({
           login,
@@ -159,22 +162,11 @@ export function loginUser({ login, password }) {
         } 
         return response.json();
     });
-    // .then(() => {
-    //   fetchAndRender();
-    // })
-    // .then(() => {
-    //   buttonElement.disabled = false;
-    //   buttonElement.textContent = 'Войти';
-    // })
-    // .finally(() => {
-    //   buttonElement.disabled = false;
-    //   buttonElement.textContent = 'Войти';
-    // });
   }
 
   // для регистрации
 export function registerUser({ name, login, password }) {
-  return fetch("https://wedev-api.sky.pro/api/v2/atolykova-lily/comments", {
+   return fetch("https://wedev-api.sky.pro/api/user", {
         method: "POST",
         body: JSON.stringify({
           name,

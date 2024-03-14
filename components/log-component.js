@@ -1,7 +1,9 @@
-import { loginUser, registerUser } from "../api.js";
+import { loginUser, registerUser, fetchAndRender } from "../api.js";
+// import { loginUser, registerUser } from "../api.js"; ранее было - но ошибка в alert fetchAndRender is not a function
 
 
-export function renderLogComponent ({ appEl, setToken, fetchAndRender }) {
+export function renderLogComponent ({ appEl, setToken }) {
+  // export function renderLogComponent ({ appEl, setToken, fetchAndRender }) { ранее было но ошибка в alert fetchAndRender is not a function
   let isLoginMode = true;
 
     const renderForm = () => {
@@ -35,9 +37,10 @@ export function renderLogComponent ({ appEl, setToken, fetchAndRender }) {
       </form>
       </div>
       `;
-  
       appEl.innerHTML = appHtml;
-  
+ 
+
+      
       document.getElementById("addLog").addEventListener('click', () => {
         // setToken("Bearer asb4c4boc86gasb4c4boc86g37w3cc3bo3b83k4g37k3bk3cg3c03ck4k");
       if(!isLoginMode) {
@@ -65,9 +68,8 @@ export function renderLogComponent ({ appEl, setToken, fetchAndRender }) {
         login: login,
         password: password,
       }).then((user) => {
-        // console.log(user) //после проверки удалить
-        // setToken(`Bearer ${ user.user.token }`); //не работает ошибка user.user is undefined. прописала полностью token
-        setToken(`Bearer asb4c4boc86gasb4c4boc86g37w3cc3bo3b83k4g37k3bk3cg3c03ck4k`);
+        setToken(`Bearer ${ user.user.token }`);
+        // setToken(`Bearer asb4c4boc86gasb4c4boc86g37w3cc3bo3b83k4g37k3bk3cg3c03ck4k`);
         fetchAndRender();
       }).catch((error) => {
         alert(error.message);
@@ -90,16 +92,15 @@ export function renderLogComponent ({ appEl, setToken, fetchAndRender }) {
         login: login,
         password: password,
       }).then((user) => {
-        // console.log(user) //после проверки удалить
-        // setToken(`Bearer ${ user.user.token }`); //не работает ошибка user.user is undefined. прописала полностью token
-        setToken(`Bearer asb4c4boc86gasb4c4boc86g37w3cc3bo3b83k4g37k3bk3cg3c03ck4k`);
+        localStorage.setItem('user', JSON.stringify(user.user));
+        setToken(`Bearer ${ user.user.token }`);
+        // setToken(`Bearer asb4c4boc86gasb4c4boc86g37w3cc3bo3b83k4g37k3bk3cg3c03ck4k`);
         fetchAndRender();
       }).catch((error) => {
         alert(error.message);
       });
       }
     });
-  
     document.getElementById("toggle-button").addEventListener('click', () => {
       isLoginMode = !isLoginMode;
       renderForm();
@@ -107,38 +108,3 @@ export function renderLogComponent ({ appEl, setToken, fetchAndRender }) {
     };
     renderForm();
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  // import { renderCommentsList } from "../render.js";
-// export function renderRegComponent () {
-// const renderReg = () => {
-//   const appHtml = `
-//   <div class="container">
-//   <ul id="list" class="comments">
-//   ${commentsHtml}
-//   </ul>
-//   <p>Чтобы добавить комментарий, <span class="add-autho" id="toggle-button2">авторизуйтесь</span></p>
-// </div>
-// `;  
-// appEl.innerHTML = appHtml;
-// }
-// renderReg();
-// };
-
