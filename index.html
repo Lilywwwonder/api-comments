@@ -19,3 +19,120 @@
 
 <script type="module" src="./main.js"></script>
 </html>
+
+
+<!-- 
+// first----------------------------------------
+// buttonElement.addEventListener("click", () => {
+// addNameElement.classList.remove("error");
+// addTextElement.classList.remove("error");
+// if (addNameElement.value.trim() === "") {
+// addNameElement.classList.add("error");
+// return;
+// }
+// if (addTextElement.value.trim() === "") {
+// addTextElement.classList.add("error");
+// return;
+// }
+// postComment(); // добавили
+// });
+
+// second(double)---------------------------------
+// if (buttonElement) {
+//   buttonElement.addEventListener('click', () => {
+//     //addNameElement.style.backgroundColor = ""; альтернатива инлайн - не рек
+//     addNameElement.classList.remove("error");
+//     addTextElement.classList.remove("error");
+//     if (addNameElement.value.trim() === "") {
+//       //addNameElement.style.backgroundColor = "red"; альтернатива инлайн - не рек
+//       addNameElement.classList.add("error");
+//       return;
+//     } 
+//     if (addTextElement.value.trim() === "") {
+//       addTextElement.classList.add("error");
+//       return;
+//     };
+//     renderComments();
+//     postComment(); // добавили
+//     addNameElement.value = '';
+//     addTextElement.value = '';
+//   });
+//   }
+
+// second----------------------------------------------
+// if (buttonElement) {
+// buttonElement.addEventListener('click', () => {
+//   //addNameElement.style.backgroundColor = ""; альтернатива инлайн - не рек
+//   addNameElement.classList.remove("error");
+//   addTextElement.classList.remove("error");
+//   if (addNameElement.value.trim() === "") {
+//     //addNameElement.style.backgroundColor = "red"; альтернатива инлайн - не рек
+//     addNameElement.classList.add("error");
+//     return;
+//   } 
+//   if (addTextElement.value.trim() === "") {
+//     addTextElement.classList.add("error");
+//     return;
+//   };
+//   renderComments();
+//   // postComment(); // добавили
+//   addNameElement.value = '';
+//   addTextElement.value = '';
+// });
+// } это из msin js -->
+
+
+
+
+<!-- 
+
+
+
+// первый способ
+  //     .then((response) => {
+  //       // if (response.status === 400) {
+  //       //   throw new Error("Пользователь с таким именем уже существует");
+  //       // } 
+  //       if (response.status === 400 && (name.length < 3 || login.length < 3 || password.length < 3)) {
+  //         throw new Error("Некорректный запрос");
+  //       } 
+  //       return response.json();
+  //   })    
+  //   .catch((error) => {
+  //     if (error.message === "Некорректный запрос") {
+  //         alert("Проверьте корректность введенных данных: \n1. Пользователь с таким именем уже существует.\n2. Имя, логин или пароль должны быть не короче 3 символов");
+  //         return;
+  //     }  console.log(error);
+  // });
+  // }
+
+// третий способ
+// .then((response) => {
+//   if (response.status === 400) {
+//     return response.json()
+//     .then((data) => {
+//       throw new Error("Некорректный запрос"); // бросить ошибку с текстом из ответа сервера
+//     });
+//   } 
+//   if (name.length < 3 || login.length < 3 || password.length < 3) {
+//     throw new Error("3 знака");
+//   } 
+//   return response.json();
+// })    
+// .catch((error) => {
+// if (error.message === "Некорректный запрос") {
+//     alert("Пользователь с таким именем уже существует");
+//     return;
+// } 
+// else if (error.message === "3 знака") {
+//     alert("введите три символа"); // выводить текст ошибки из ответа сервера
+//     return;
+// }  else {
+// console.log(error);
+// }
+// });
+// }
+ это из api js -->
+
+
+ 

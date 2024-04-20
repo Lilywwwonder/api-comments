@@ -65,7 +65,7 @@ export const renderComments = () => {
     return; 
   }
 
-// добавили для сохранения имени + строка 108 ${userName}" 
+// добавили для сохранения имени + строка 108 ${userName}" // 108 строка type="text" id="addName" value="${userName}" 
 const storedUser = localStorage.getItem('user');
 const userName = storedUser ? JSON.parse(storedUser).name : '';
 
@@ -107,7 +107,8 @@ const appHtml = `
   <input
     type="text" id="addName" value="${userName}" 
     class="add-form-name"
-    placeholder="Введите ваше имя"
+    placeholder="Введите ваше имя" 
+    disabled
   />
   <textarea
     type="textarea" id="addText"

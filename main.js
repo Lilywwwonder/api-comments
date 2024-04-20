@@ -1,5 +1,5 @@
 import { fetchAndRender, loginUser, postComment } from "./api.js";
-import { renderComments } from "./render.js"; 
+import { renderComments, token } from "./render.js"; 
 
 "use strict";
 const addTimeElement = document.getElementById("addTime");
@@ -33,11 +33,14 @@ addTextElement.classList.add("error");
 return;
 }
 renderComments();
-postComment({nameValue: addNameElement.value, textValue: addTextElement.value}); // добавили
-addNameElement.value = '';
-addTextElement.value = '';
+postComment({ 
+  nameValue: addNameElement.value,
+  textValue: addTextElement.value
+  }); // добавили
+// addNameElement.value = '';
+// addTextElement.value = '';
   });
-}
+ }
 }
 
 
@@ -45,6 +48,10 @@ export const likesButtonListeners = () => {
 const likesButtonElement = document.querySelectorAll('.like-button');
 for (const likeButton of likesButtonElement) {
     likeButton.addEventListener('click', event => {
+      if (!token) {
+        alert("Только авторизованные пользователи могут ставить лайк");
+        return;
+      }
       event.stopPropagation();
       const index = likeButton.dataset.index;
       if (comments[index].isLike === false) { 
@@ -90,79 +97,3 @@ console.log("It works!");
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// first----------------------------------------
-// buttonElement.addEventListener("click", () => {
-// addNameElement.classList.remove("error");
-// addTextElement.classList.remove("error");
-// if (addNameElement.value.trim() === "") {
-// addNameElement.classList.add("error");
-// return;
-// }
-// if (addTextElement.value.trim() === "") {
-// addTextElement.classList.add("error");
-// return;
-// }
-// postComment(); // добавили
-// });
-
-// second(double)---------------------------------
-// if (buttonElement) {
-//   buttonElement.addEventListener('click', () => {
-//     //addNameElement.style.backgroundColor = ""; альтернатива инлайн - не рек
-//     addNameElement.classList.remove("error");
-//     addTextElement.classList.remove("error");
-//     if (addNameElement.value.trim() === "") {
-//       //addNameElement.style.backgroundColor = "red"; альтернатива инлайн - не рек
-//       addNameElement.classList.add("error");
-//       return;
-//     } 
-//     if (addTextElement.value.trim() === "") {
-//       addTextElement.classList.add("error");
-//       return;
-//     };
-//     renderComments();
-//     postComment(); // добавили
-//     addNameElement.value = '';
-//     addTextElement.value = '';
-//   });
-//   }
-
-// second----------------------------------------------
-// if (buttonElement) {
-// buttonElement.addEventListener('click', () => {
-//   //addNameElement.style.backgroundColor = ""; альтернатива инлайн - не рек
-//   addNameElement.classList.remove("error");
-//   addTextElement.classList.remove("error");
-//   if (addNameElement.value.trim() === "") {
-//     //addNameElement.style.backgroundColor = "red"; альтернатива инлайн - не рек
-//     addNameElement.classList.add("error");
-//     return;
-//   } 
-//   if (addTextElement.value.trim() === "") {
-//     addTextElement.classList.add("error");
-//     return;
-//   };
-//   renderComments();
-//   // postComment(); // добавили
-//   addNameElement.value = '';
-//   addTextElement.value = '';
-// });
-// }

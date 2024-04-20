@@ -1,10 +1,11 @@
 import { loginUser, registerUser, fetchAndRender } from "../api.js";
 // import { loginUser, registerUser } from "../api.js"; ранее было - но ошибка в alert fetchAndRender is not a function
-
+// import { addNameElement } from "../render.js";
 
 export function renderLogComponent ({ appEl, setToken }) {
   // export function renderLogComponent ({ appEl, setToken, fetchAndRender }) { ранее было но ошибка в alert fetchAndRender is not a function
   let isLoginMode = true;
+  
 
     const renderForm = () => {
       const appHtml = `
@@ -68,9 +69,11 @@ export function renderLogComponent ({ appEl, setToken }) {
         login: login,
         password: password,
       }).then((user) => {
+        localStorage.setItem('user', JSON.stringify(user.user)); 
         setToken(`Bearer ${ user.user.token }`);
         // setToken(`Bearer asb4c4boc86gasb4c4boc86g37w3cc3bo3b83k4g37k3bk3cg3c03ck4k`);
         fetchAndRender();
+        // addNameElement.value = name; с этим полем появляется ошибка для сохранения имени
       }).catch((error) => {
         alert(error.message);
       });
@@ -108,3 +111,7 @@ export function renderLogComponent ({ appEl, setToken }) {
     };
     renderForm();
   }
+
+
+
+  

@@ -64,8 +64,22 @@ fetchPromise
 });
 }
 
+//отключение интернета
+function handleOffline() {
+  alert("Отсутствует интернет-соединение. Пожалуйста, проверьте подключение и попробуйте снова");
+};
+//подключение интернета
+function handleOnline() {
+  alert("Интернет-соединение восстановлено");
+}
+// обработчики событий 
+window.addEventListener("offline", handleOffline);
+window.addEventListener("online", handleOnline);
+
 
 export function postComment({nameValue, textValue}) {
+  const addNameElement = document.getElementById("addName");
+  const addTextElement = document.getElementById("addText");
 const buttonElement = document.getElementById("addComment");
 // const nameValue = addNameElement.value;
 // const textValue = addTextElement.value;
@@ -108,13 +122,14 @@ buttonElement.textContent = 'Комментарий добавляется...';
       // password = prompt('Введите верный пароль');
       fetchAndRender();
       throw new Error("Нет авторизации");
-    }
-    else {
+    } else {
       return response.json();
     }
     })
     .then((responseData) => {
       fetchAndRender();
+      addNameElement.value = '';
+      addTextElement.value = '';
     })
     // включаем кнопку, добавили .then(data)
     .then((data) => {
@@ -147,13 +162,17 @@ buttonElement.textContent = 'Комментарий добавляется...';
 
 // для входа (логина)
 export function loginUser({ login, password }) {
+  if (login.trim().length === 0 || password.trim().length === 0) {
+    alert("Введенные символы не должны состоять только из пробелов");
+    return;
+  }
   // const buttonElement = document.getElementById('addLog');
   // buttonElement.disabled = true;
   return fetch("https://wedev-api.sky.pro/api/user/login", {
         method: "POST",
         body: JSON.stringify({
           login,
-          password,
+          password
         }),
       })
       .then((response) => {
@@ -166,21 +185,35 @@ export function loginUser({ login, password }) {
 
   // для регистрации
 export function registerUser({ name, login, password }) {
+  if (name.trim().length === 0 || login.trim().length === 0 || password.trim().length === 0) {
+    alert("Введенные символы не должны состоять только из пробелов");
+    return;
+  }
    return fetch("https://wedev-api.sky.pro/api/user", {
         method: "POST",
         body: JSON.stringify({
           name,
           login,
-          password,
+          password
         }),
       })
-      .then((response) => {
-        if (response.status === 400) {
-          throw new Error("Пользователь с таким именем уже существует");
-        } 
-        return response.json();
-    });
-  }
+
+  //второй способ
+  .then((response) => {
+    if (response.status === 400 || (name.length < 3 || login.length < 3 || password.length < 3)) {
+      throw new Error("Некорректный запрос");
+    } 
+    return response.json();
+})    
+.catch((error) => {
+  if (error.message === "Некорректный запрос") {
+      alert("Проверьте корректность введенных данных: \n1. Пользователь с таким именем уже существует.\n2. Имя, логин или пароль должны быть не короче 3 символов");
+      return;
+  } 
+  console.log(error);
+});
+}
 
 
-
+// preloader.textContent = "Загрузка комментариев не удалась, обновите страницу или проверьте интернет-соединение";
+ 
