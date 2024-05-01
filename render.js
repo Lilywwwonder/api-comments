@@ -24,7 +24,7 @@ export const renderReg = () => {
       const likeClass = comment.isLike ? "-active-like" : "";
       return `<li class="comment">
         <div class="comment-header">
-          <div>${comment.name}</div>
+          <div>${comment.name}</div> 
           <div>${comment.time}</div>
         </div>
         <div class="comment-body">
