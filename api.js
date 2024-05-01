@@ -9,6 +9,7 @@ import {
 } from "./render.js";
 import { setComments } from "./main.js";
 import { formatDateToRu, formatDateToSw } from "./lib/formatDate/formatDate.js";
+import { format } from "date-fns"; // прописать
 const host = "https://wedev-api.sky.pro/api/v2/atolykova-lily/comments";
 
 // let password = prompt('Введите пароль');
@@ -34,7 +35,7 @@ export const formatDate = (date) => {
     date.getHours() < 10 ? "0" + date.getHours() : date.getHours()
   }:${date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes()}`;
 };
-const country = "sw";
+const country = "sw"; // переключаем фомат времени
 
 export function fetchAndRender() {
   const fetchPromise = fetch(host, {
@@ -58,6 +59,11 @@ export function fetchAndRender() {
     })
     .then((responseData) => {
       const comments = responseData.comments.map((comment) => {
+        // ниже добавили подключение format из библиотеки
+        const createDate = format(
+          new Date(comment.date),
+          "yyyy/MM/dd hh:mm:ss"
+        );
         return {
           name: comment.author.name
             .replace(/&lt;/g, "<")
@@ -66,13 +72,14 @@ export function fetchAndRender() {
             .replace(/&quot;/g, '"')
             .replace(/&nbsp;/g, " "),
           // time: formatDateToRu(new Date(comment.date)),
-
-          time: `${
-            country === "ru"
-              ? formatDateToRu(new Date(comment.date))
-              : formatDateToSw(new Date(comment.date))
-          }`,
-          // ниже прежний формат времени до изменения, выше новый
+          time: `${createDate}`,
+          // второй формат времени
+          // time: `${
+          //   country === "ru"
+          //     ? formatDateToRu(new Date(comment.date))
+          //     : formatDateToSw(new Date(comment.date))
+          // }`,
+          // первоначальный формат времени
           // time: new Date(comment.date).toLocaleTimeString("sm", {
           //   day: "2-digit",
           //   month: "2-digit",

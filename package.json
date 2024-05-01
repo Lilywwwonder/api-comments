@@ -1,0 +1,22 @@
+{
+  "name": "api-comments",
+  "version": "1.0.0",
+  "description": "Приложение доступно по ссылке https://lilywwwonder.github.io/api-comments/",
+  "main": "main.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "dev": "webpack --mode development --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "date-fns": "^3.6.0"
+  },
+  "devDependencies": {
+    "webpack": "^5.91.0",
+    "webpack-cli": "^5.1.4"
+  }
+}
