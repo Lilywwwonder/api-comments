@@ -1,20 +1,28 @@
 import { fetchAndRender, registerUser } from "./api.js";
-import { commentsElementListeners, likesButtonListeners, comments, addSubmitListener, addComListener } from "./main.js"
+import {
+  commentsElementListeners,
+  likesButtonListeners,
+  comments,
+  addSubmitListener,
+  addComListener,
+} from "./main.js";
 import { renderLogComponent } from "./components/log-component.js";
 
-export const preloader = document.querySelector('.preload'); 
+export const preloader = document.querySelector(".preload");
 export const addNameElement = document.getElementById("addName");
 export const addTextElement = document.getElementById("addText");
 export const buttonElement = document.getElementById("addComment");
 const listElement = document.getElementById("list");
-export let token = "Bearer asb4c4boc86gasb4c4boc86g37w3cc3bo3b83k4g37k3bk3cg3c03ck4k";
+export let token =
+  "Bearer asb4c4boc86gasb4c4boc86g37w3cc3bo3b83k4g37k3bk3cg3c03ck4k";
 token = null;
 
 export const renderReg = () => {
   const appEl = document.getElementById("app");
-  const commentsHtml = comments.map((comment, index) => {
-    const likeClass = comment.isLike ? '-active-like' : '';
-    return `<li class="comment">
+  const commentsHtml = comments
+    .map((comment, index) => {
+      const likeClass = comment.isLike ? "-active-like" : "";
+      return `<li class="comment">
         <div class="comment-header">
           <div>${comment.name}</div>
           <div>${comment.time}</div>
@@ -35,44 +43,45 @@ export const renderReg = () => {
             </button>
           </div>
         </div>
-      </li>`
-  }).join('');
+      </li>`;
+    })
+    .join("");
   const appHtml = `
    <div class="container">
    <ul id="list" class="comments">
      ${commentsHtml}     
    </ul>
    <p>Чтобы добавить комментарий, <span class="add-autho" id="toggle-button2">авторизуйтесь</span></p>
- </div>`
- appEl.innerHTML = appHtml;
- likesButtonListeners();
+ </div>`;
+  appEl.innerHTML = appHtml;
+  likesButtonListeners();
 
-
- document.getElementById("toggle-button2").addEventListener('click', () => {
-  renderLogComponent({ appEl: document.getElementById("app"), setToken: (newToken) => {
-    token = newToken;
-    fetchAndRender();
-  },
+  document.getElementById("toggle-button2").addEventListener("click", () => {
+    renderLogComponent({
+      appEl: document.getElementById("app"),
+      setToken: (newToken) => {
+        token = newToken;
+        fetchAndRender();
+      },
+    });
   });
-});
 };
 
-
-export const renderComments = () => { 
-  const appEl = document.getElementById("app"); 
-  if (!token) { 
+export const renderComments = () => {
+  const appEl = document.getElementById("app");
+  if (!token) {
     renderReg();
-    return; 
+    return;
   }
 
-// добавили для сохранения имени + строка 108 ${userName}" // 108 строка type="text" id="addName" value="${userName}" 
-const storedUser = localStorage.getItem('user');
-const userName = storedUser ? JSON.parse(storedUser).name : '';
+  // добавили для сохранения имени + строка 108 ${userName}" // 108 строка type="text" id="addName" value="${userName}"
+  const storedUser = localStorage.getItem("user");
+  const userName = storedUser ? JSON.parse(storedUser).name : "";
 
-
-const commentsHtml = comments.map((comment, index) => {
-  const likeClass = comment.isLike ? '-active-like' : '';
-  return `<li class="comment">
+  const commentsHtml = comments
+    .map((comment, index) => {
+      const likeClass = comment.isLike ? "-active-like" : "";
+      return `<li class="comment">
       <div class="comment-header">
       <div>${comment.name}</div>
         <div>${comment.time}</div>
@@ -92,11 +101,12 @@ const commentsHtml = comments.map((comment, index) => {
           </button>
         </div>
       </div>
-    </li>`
-}).join('');
-// const appEl = document.getElementById("app");
+    </li>`;
+    })
+    .join("");
+  // const appEl = document.getElementById("app");
 
-const appHtml = `
+  const appHtml = `
 <div class="container">
 <ul id="list" class="comments">
    <!--список рендерится из js-->
@@ -123,16 +133,9 @@ const appHtml = `
 </form>
 </div>
 `;
-appEl.innerHTML = appHtml;
-likesButtonListeners();
-commentsElementListeners();
-addSubmitListener();
-addComListener();
+  appEl.innerHTML = appHtml;
+  likesButtonListeners();
+  commentsElementListeners();
+  addSubmitListener();
+  addComListener();
 };
-
-
-
-
-
-
-
