@@ -2,13 +2,13 @@ import {
   renderComments,
   renderReg,
   preloader,
-  addNameElement,
-  addTextElement,
-  buttonElement,
+  //addNameElement, LINT
+  //addTextElement, LINT
+  //buttonElement,
   token,
 } from "./render.js";
 import { setComments } from "./main.js";
-import { formatDateToRu, formatDateToSw } from "./lib/formatDate/formatDate.js";
+//import { formatDateToRu, formatDateToSw } from "./lib/formatDate/formatDate.js"; LINT
 import { format } from "date-fns"; // прописать
 const host = "https://wedev-api.sky.pro/api/v2/atolykova-lily/comments";
 
@@ -35,7 +35,7 @@ export const formatDate = (date) => {
     date.getHours() < 10 ? "0" + date.getHours() : date.getHours()
   }:${date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes()}`;
 };
-const country = "sw"; // переключаем фомат времени
+//const country = "sw"; // переключаем фомат времени LINT
 
 export function fetchAndRender() {
   const fetchPromise = fetch(host, {
@@ -182,13 +182,15 @@ export function postComment({ nameValue, textValue }) {
         return response.json();
       }
     })
-    .then((responseData) => {
+    // .then((responseData) => { LINT
+    .then(() => {
       fetchAndRender();
       addNameElement.value = "";
       addTextElement.value = "";
     })
     // включаем кнопку, добавили .then(data)
-    .then((data) => {
+    // .then((data) => { LINT
+    .then(() => {
       buttonElement.disabled = false;
       buttonElement.textContent = "Написать";
     })

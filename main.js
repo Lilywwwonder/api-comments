@@ -1,9 +1,10 @@
-import { fetchAndRender, loginUser, postComment } from "./api.js";
+// import { fetchAndRender, loginUser, postComment } from "./api.js"; LINT
+import { fetchAndRender, postComment } from "./api.js";
 import { renderComments, token } from "./render.js";
 
 ("use strict");
-const addTimeElement = document.getElementById("addTime");
-const likesButtonElement = document.querySelectorAll(".like-button");
+// const addTimeElement = document.getElementById("addTime"); LINT
+// const likesButtonElement = document.querySelectorAll(".like-button"); LINT
 
 export let comments = [];
 
@@ -67,6 +68,7 @@ export const likesButtonListeners = () => {
 
 export const commentsElementListeners = () => {
   const commentsElement = document.querySelectorAll(".comment-text");
+  const addTextElement = document.getElementById("addText"); // LINT добавили
 
   for (const commentText of commentsElement) {
     commentText.addEventListener("click", (event) => {

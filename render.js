@@ -1,4 +1,5 @@
-import { fetchAndRender, registerUser } from "./api.js";
+// import { fetchAndRender, registerUser } from "./api.js"; LINT
+import { fetchAndRender } from "./api.js";
 import {
   commentsElementListeners,
   likesButtonListeners,
@@ -12,7 +13,7 @@ export const preloader = document.querySelector(".preload");
 export const addNameElement = document.getElementById("addName");
 export const addTextElement = document.getElementById("addText");
 export const buttonElement = document.getElementById("addComment");
-const listElement = document.getElementById("list");
+// const listElement = document.getElementById("list"); LINT
 export let token =
   "Bearer asb4c4boc86gasb4c4boc86g37w3cc3bo3b83k4g37k3bk3cg3c03ck4k";
 token = null;
